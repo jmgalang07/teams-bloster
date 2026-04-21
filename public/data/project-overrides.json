@@ -1,5 +1,5 @@
 {
-  "exportedAt": "2026-04-21T16:36:01.209Z",
+  "exportedAt": "2026-04-21T17:11:40.419Z",
   "waters": [
     {
       "id": "horno-tejero",
@@ -20,7 +20,64 @@
   ],
   "catches": [],
   "editedWaters": [],
-  "editedCatches": [],
+  "editedCatches": [
+    {
+      "id": "c32",
+      "memberId": "alvaro",
+      "waterId": "valverde",
+      "baitId": "tigernut-cream",
+      "carpType": "common",
+      "weightKg": 11,
+      "date": "2024-10-06",
+      "rig": "Snowman",
+      "image": "images/catches/c-alvaro-valverde-1.jpeg",
+      "notes": "Picada al amanecer con actividad pegada a la orilla.",
+      "createdAt": "2026-04-21T17:09:47.908Z",
+      "source": "seed"
+    },
+    {
+      "id": "c30",
+      "memberId": "dani",
+      "waterId": "don-tello",
+      "baitId": "tiger-xtreme",
+      "carpType": "pez-gato",
+      "weightKg": 10,
+      "date": "2025-05-08",
+      "rig": "Hair rig clasico",
+      "image": "images/catches/pg-dani-don-tello-1.jpeg",
+      "notes": "Captura en paso de corriente con mucha lectura del escenario.",
+      "createdAt": "2026-04-21T17:09:47.908Z",
+      "source": "seed"
+    },
+    {
+      "id": "c23",
+      "memberId": "vima",
+      "waterId": "don-tello",
+      "baitId": "tiger-xtreme",
+      "carpType": "pez-gato",
+      "weightKg": 10,
+      "date": "2025-05-08",
+      "rig": "Hair rig clasico",
+      "image": "images/catches/pg-vima-don-tello-1.jpeg",
+      "notes": "Captura en paso de corriente con mucha lectura del escenario.",
+      "createdAt": "2026-04-21T17:09:47.908Z",
+      "source": "seed"
+    },
+    {
+      "id": "c26",
+      "memberId": "vima",
+      "waterId": "don-benito",
+      "baitId": "tiger-xtreme",
+      "carpType": "barbo",
+      "weightKg": 9,
+      "date": "2025-05-08",
+      "rig": "Hair rig clasico",
+      "image": "images/catches/c-vima-charca-don-benito-3.png",
+      "notes": "Captura en paso de corriente con mucha lectura del escenario.",
+      "createdAt": "2026-04-21T17:09:47.908Z",
+      "source": "seed"
+    }
+  ],
   "deletedWaterIds": [],
   "deletedCatchIds": []
 }
