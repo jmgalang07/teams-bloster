@@ -990,7 +990,6 @@ export default function UploadPanelPage() {
                           <span>
                             {formatDate(capture.date)} · {formatWeight(capture.weightKg)} · {formatFishType(capture.carpType)}
                           </span>
-                          <small>{capture.source === 'custom' ? 'Captura anadida desde el panel' : 'Captura base'}</small>
                         </div>
 
                         <div className="card-actions card-actions-compact">
@@ -1052,7 +1051,6 @@ export default function UploadPanelPage() {
                         <span>
                           {water.type} · {water.province} · {catchCountByWaterId[water.id] ?? 0} capturas
                         </span>
-                        <small>{water.source === 'custom' ? 'Escenario anadido desde el panel' : 'Escenario base'}</small>
                       </div>
 
                       <div className="card-actions card-actions-compact">
