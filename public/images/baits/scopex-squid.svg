@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-label="Scopex &amp; Squid">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#071418"/>
+      <stop offset="55%" stop-color="#0f2a31"/>
+      <stop offset="100%" stop-color="#09191f"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0%" stop-color="#69d0be"/>
+      <stop offset="100%" stop-color="#7bc0de"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="20%" cy="10%" r="80%">
+      <stop offset="0%" stop-color="#69d0be" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#7bc0de" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <path d="M0 720C220 680 330 640 520 660C740 684 910 800 1120 780C1320 760 1470 650 1600 610V900H0Z" fill="#69d0be" fill-opacity="0.12"/>
+  <path d="M0 770C220 730 370 690 560 710C760 732 940 846 1160 820C1380 794 1490 705 1600 660V900H0Z" fill="#7bc0de" fill-opacity="0.09"/>
+  <path d="M1110 290C1050 210 920 180 800 210C714 232 642 279 577 341C507 407 458 451 370 462C356 510 398 551 465 558C570 570 657 486 739 448C819 412 912 398 1032 427C1092 442 1172 475 1258 527C1259 486 1248 452 1226 427C1208 406 1180 390 1142 374C1180 350 1194 335 1210 316C1222 301 1222 280 1210 269C1194 252 1159 258 1110 290Z" fill="none" stroke="url(#accent)" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1016" cy="282" r="12" fill="#69d0be"/>
+  <path d="M1320 170C1360 200 1390 248 1402 308C1414 372 1410 432 1388 486" fill="none" stroke="#7bc0de" stroke-width="7" stroke-linecap="round"/>
+  <path d="M1388 486C1358 508 1327 532 1313 574C1306 596 1308 626 1327 648" fill="none" stroke="#7bc0de" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="1318" cy="660" r="16" fill="none" stroke="#69d0be" stroke-width="7"/>
+  <text x="96" y="630" fill="#ecf6f2" font-size="78" font-family="Inter, Arial, sans-serif" font-weight="800">Scopex &amp; Squid</text>
+  <text x="100" y="700" fill="#95b6af" font-size="30" font-family="Inter, Arial, sans-serif">Boilie dulce / pescado</text>
+  <text x="100" y="786" fill="#7bc0de" font-size="22" font-family="Inter, Arial, sans-serif" letter-spacing="6">TEAM'S BLOSTER</text>
+</svg>

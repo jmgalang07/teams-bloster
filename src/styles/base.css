@@ -1,0 +1,201 @@
+:root {
+  color-scheme: dark;
+  --bg: #071418;
+  --bg-elevated: #0d2026;
+  --bg-soft: #102a31;
+  --surface: rgba(15, 35, 40, 0.88);
+  --surface-strong: rgba(18, 42, 49, 0.96);
+  --surface-alt: rgba(10, 24, 29, 0.86);
+  --line: rgba(151, 186, 175, 0.16);
+  --line-strong: rgba(151, 186, 175, 0.3);
+  --text: #e8f2ee;
+  --muted: #97b4ad;
+  --accent: #69d0be;
+  --accent-soft: rgba(105, 208, 190, 0.16);
+  --accent-2: #d6b570;
+  --accent-2-soft: rgba(214, 181, 112, 0.14);
+  --accent-3: #7bc0de;
+  --shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --container: 1180px;
+  --header-height: 84px;
+  --bg-radial-left: rgba(96, 178, 160, 0.14);
+  --bg-radial-right: rgba(74, 144, 226, 0.12);
+  --bg-gradient-start: #071418;
+  --bg-gradient-end: #09191f;
+  --section-alt-start: rgba(7, 20, 24, 0.3);
+  --section-alt-end: rgba(7, 20, 24, 0.62);
+  --header-bg: rgba(7, 20, 24, 0.72);
+  --header-elevated-bg: rgba(8, 22, 27, 0.96);
+  --footer-bg-start: rgba(7, 20, 24, 0.6);
+  --footer-bg-end: rgba(8, 24, 28, 0.96);
+  --nav-hover-bg: rgba(255, 255, 255, 0.04);
+  --soft-surface: rgba(255, 255, 255, 0.03);
+  --soft-surface-strong: rgba(255, 255, 255, 0.06);
+  --soft-surface-border: rgba(255, 255, 255, 0.05);
+  --hero-copy-muted: rgba(232, 242, 238, 0.84);
+  --hero-overlay-1: rgba(7, 20, 24, 0.05);
+  --hero-overlay-2: rgba(7, 20, 24, 0.25);
+  --hero-overlay-3: rgba(7, 20, 24, 0.75);
+  --hero-overlay-side-1: rgba(7, 20, 24, 0.55);
+  --hero-overlay-side-2: rgba(7, 20, 24, 0.18);
+  --hero-overlay-lg-1: rgba(7, 20, 24, 0.12);
+  --hero-overlay-lg-2: rgba(7, 20, 24, 0.38);
+  --hero-overlay-lg-3: rgba(7, 20, 24, 0.9);
+  --hero-overlay-lg-side-1: rgba(7, 20, 24, 0.75);
+  --hero-overlay-lg-side-2: rgba(7, 20, 24, 0.28);
+  --button-primary-end: #44a89a;
+  --button-primary-text: #072126;
+  --card-gradient-start: rgba(18, 42, 49, 0.92);
+  --card-gradient-end: rgba(10, 24, 29, 0.84);
+  --brand-logo-glow: rgba(105, 208, 190, 0.2);
+  --brand-logo-bg-start: rgba(11, 28, 33, 0.76);
+  --brand-logo-bg-end: rgba(9, 22, 26, 0.96);
+  --cta-gradient-start: rgba(16, 42, 47, 0.92);
+  --cta-gradient-end: rgba(9, 22, 26, 0.96);
+  --lightbox-backdrop: rgba(2, 9, 12, 0.84);
+  --lightbox-panel-bg: rgba(10, 24, 29, 0.98);
+  --lightbox-close-bg: rgba(255, 255, 255, 0.08);
+  --input-bg: #102a31;
+  --input-text: #d6b570;
+  --input-border: #d6b570;
+  --placeholder: rgba(214, 181, 112, 0.55);
+  --status-error-text: #f1d699;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #eef6f3;
+  --bg-elevated: #ffffff;
+  --bg-soft: #e3efeb;
+  --surface: rgba(255, 255, 255, 0.9);
+  --surface-strong: rgba(255, 255, 255, 0.98);
+  --surface-alt: rgba(246, 250, 248, 0.96);
+  --line: rgba(20, 52, 59, 0.12);
+  --line-strong: rgba(20, 52, 59, 0.22);
+  --text: #14343b;
+  --muted: #5f797e;
+  --accent: #238d81;
+  --accent-soft: rgba(35, 141, 129, 0.14);
+  --accent-2: #a37a2a;
+  --accent-2-soft: rgba(163, 122, 42, 0.12);
+  --accent-3: #2b7a9c;
+  --shadow: 0 18px 42px rgba(20, 52, 59, 0.12);
+  --bg-radial-left: rgba(35, 141, 129, 0.12);
+  --bg-radial-right: rgba(43, 122, 156, 0.1);
+  --bg-gradient-start: #f8fbfa;
+  --bg-gradient-end: #edf5f2;
+  --section-alt-start: rgba(227, 239, 235, 0.7);
+  --section-alt-end: rgba(239, 246, 243, 0.96);
+  --header-bg: rgba(248, 251, 250, 0.88);
+  --header-elevated-bg: rgba(255, 255, 255, 0.98);
+  --footer-bg-start: rgba(232, 241, 238, 0.86);
+  --footer-bg-end: rgba(248, 251, 250, 0.98);
+  --nav-hover-bg: rgba(20, 52, 59, 0.06);
+  --soft-surface: rgba(20, 52, 59, 0.04);
+  --soft-surface-strong: rgba(20, 52, 59, 0.08);
+  --soft-surface-border: rgba(20, 52, 59, 0.08);
+  --hero-copy-muted: rgba(20, 52, 59, 0.8);
+  --hero-overlay-1: rgba(248, 251, 250, 0.08);
+  --hero-overlay-2: rgba(244, 249, 247, 0.28);
+  --hero-overlay-3: rgba(237, 245, 242, 0.86);
+  --hero-overlay-side-1: rgba(248, 251, 250, 0.72);
+  --hero-overlay-side-2: rgba(248, 251, 250, 0.26);
+  --hero-overlay-lg-1: rgba(248, 251, 250, 0.16);
+  --hero-overlay-lg-2: rgba(237, 245, 242, 0.42);
+  --hero-overlay-lg-3: rgba(232, 241, 238, 0.96);
+  --hero-overlay-lg-side-1: rgba(248, 251, 250, 0.84);
+  --hero-overlay-lg-side-2: rgba(248, 251, 250, 0.34);
+  --button-primary-end: #58b2a7;
+  --button-primary-text: #f8fbfa;
+  --card-gradient-start: rgba(255, 255, 255, 0.94);
+  --card-gradient-end: rgba(243, 248, 246, 0.98);
+  --brand-logo-glow: rgba(35, 141, 129, 0.12);
+  --brand-logo-bg-start: rgba(255, 255, 255, 0.96);
+  --brand-logo-bg-end: rgba(241, 247, 245, 0.98);
+  --cta-gradient-start: rgba(255, 255, 255, 0.96);
+  --cta-gradient-end: rgba(240, 247, 244, 0.98);
+  --lightbox-backdrop: rgba(20, 52, 59, 0.24);
+  --lightbox-panel-bg: rgba(255, 255, 255, 0.98);
+  --lightbox-close-bg: rgba(20, 52, 59, 0.08);
+  --input-bg: #f8fcfb;
+  --input-text: #24484f;
+  --input-border: rgba(163, 122, 42, 0.5);
+  --placeholder: rgba(95, 121, 126, 0.72);
+  --status-error-text: #8a6620;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top left, var(--bg-radial-left), transparent 28%),
+    radial-gradient(circle at top right, var(--bg-radial-right), transparent 25%),
+    linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
+  color: var(--text);
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
+  line-height: 1.6;
+  transition:
+    background 180ms ease,
+    color 180ms ease;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(105, 208, 190, 0.28);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+dl {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

@@ -1,0 +1,14 @@
+{
+  "counts": {
+    "members": 4,
+    "baits": 8,
+    "waters": 10,
+    "catches": 27,
+    "brands": 12,
+    "bait_brands": 7,
+    "assets": 66
+  },
+  "custom_assets": [
+    "images/uploads/waters/horno-tejero.jpg"
+  ]
+}

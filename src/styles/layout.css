@@ -1,0 +1,252 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.site-container {
+  width: min(var(--container), calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.page-shell {
+  padding-top: calc(var(--header-height) + 8px);
+}
+
+.section {
+  padding: 2rem 0;
+}
+
+.section-alt {
+  background: linear-gradient(
+    180deg,
+    var(--section-alt-start),
+    var(--section-alt-end)
+  );
+}
+
+.site-header {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 92px;
+  z-index: 40;
+  backdrop-filter: blur(18px);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  min-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.brand-mark img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+}
+
+.brand-mark strong {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.brand-mark span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.75rem 0.95rem;
+  border-radius: 999px;
+  color: var(--muted);
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  color: var(--text);
+  background: var(--nav-hover-bg);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line);
+  background: var(--soft-surface);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: var(--nav-hover-bg);
+}
+
+.theme-toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.mobile-nav-toggle {
+  display: none;
+  width: 46px;
+  height: 46px;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 14px;
+  padding: 0;
+  place-items: center;
+  cursor: pointer;
+}
+
+.mobile-nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  margin: 3px auto;
+  border-radius: 999px;
+}
+
+.site-footer {
+  margin-top: 4rem;
+  border-top: 1px solid var(--line);
+  background: linear-gradient(
+    180deg,
+    var(--footer-bg-start),
+    var(--footer-bg-end)
+  );
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 0.8fr 1fr;
+  gap: 1.5rem;
+  padding: 3rem 0 2rem;
+}
+
+.footer-brand {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.footer-brand img {
+  width: 56px;
+  height: 56px;
+}
+
+.footer-brand h3 {
+  margin-bottom: 0.4rem;
+}
+
+.footer-brand p,
+.site-footer p,
+.footer-links a {
+  color: var(--muted);
+}
+
+.footer-links {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.footer-single-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  text-align: center;
+}
+
+.footer-single-line span {
+  margin: 0;
+}
+
+@media (max-width: 920px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .main-nav {
+    position: absolute;
+    top: calc(var(--header-height) + 0.65rem);
+    right: 1rem;
+    left: 1rem;
+    padding: 1rem;
+    border-radius: var(--radius-lg);
+    background: var(--header-elevated-bg);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .nav-link,
+  .theme-toggle {
+    text-align: center;
+    width: 100%;
+  }
+
+  .mobile-nav-toggle {
+    display: inline-grid;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 4rem 0;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+  }
+
+  .brand-mark span {
+    display: none;
+  }
+}
+
+.nav-link-cta {
+  border: 1px solid rgba(105, 208, 190, 0.22);
+  background: rgba(105, 208, 190, 0.12);
+  color: var(--text);
+}
+
+.nav-link-cta:hover,
+.nav-link-cta.is-active {
+  background: linear-gradient(
+    135deg,
+    rgba(105, 208, 190, 0.24),
+    rgba(105, 208, 190, 0.12)
+  );
+  color: var(--text);
+}
