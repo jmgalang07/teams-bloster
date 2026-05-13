@@ -9,7 +9,7 @@ end $$;
 
 do $$
 begin
-  create type public.carp_type as enum ('royal', 'common', 'koi', 'barbo', 'pez-gato');
+  create type public.carp_type as enum ('royal', 'common', 'koi', 'barbo', 'pez-gato', 'black-bass', 'lucio');
 exception when duplicate_object then null;
 end $$;
 

@@ -99,8 +99,16 @@ export const normalizeCarpType = (value = 'common') => {
     return 'barbo';
   }
 
-  if (['pez-gato', 'pezgato', 'catfish', 'siluro', 'siluros'].includes(normalizedValue)) {
+    if (['pez-gato', 'pezgato', 'catfish', 'siluro', 'siluros'].includes(normalizedValue)) {
     return 'pez-gato';
+  }
+
+  if (['black-bass', 'blackbass', 'bass', 'blass-blass', 'blass'].includes(normalizedValue)) {
+    return 'black-bass';
+  }
+
+  if (['lucio', 'pike'].includes(normalizedValue)) {
+    return 'lucio';
   }
 
   return 'common';
