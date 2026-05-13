@@ -10,12 +10,12 @@ const SUPABASE_KEY =
 
 const BUCKET = 'team-assets';
 
-// Carpeta local desde donde se leen los archivos.
-// Ojo: aquí apuntamos directamente a "uploads" para no duplicar uploads/uploads.
+// Aquí está tu carpeta local.
 const ASSETS_DIR = path.resolve('supabase/assets/uploads');
 
-// Carpeta destino dentro del bucket.
-const DESTINATION_PREFIX = 'images/uploads';
+// Aquí está el destino dentro del bucket.
+// Esto evita que se cree "/uploads" en la raíz.
+const STORAGE_PREFIX = 'images/uploads';
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error(
@@ -59,7 +59,10 @@ const uploadFile = async (filePath) => {
     .split(path.sep)
     .join('/');
 
-  const storagePath = `${DESTINATION_PREFIX}/${relativePath}`;
+  const storagePath = `${STORAGE_PREFIX}/${relativePath}`;
+
+  console.log(`Subiendo: ${filePath}`);
+  console.log(`Destino: ${storagePath}`);
 
   const response = await fetch(
     `${SUPABASE_URL}/storage/v1/object/${BUCKET}/${storagePath}`,

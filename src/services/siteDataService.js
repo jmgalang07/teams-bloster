@@ -348,7 +348,7 @@ export async function createWater(waterInput, existingIds = new Set()) {
   }
 
   const image = await uploadImageIfNeeded(waterInput.image, {
-    folder: 'uploads/waters',
+    folder: 'images/uploads/waters',
     entityType: 'water',
     entityId: nextId,
     altText: waterInput.shortName || waterInput.name,
@@ -360,7 +360,7 @@ export async function createWater(waterInput, existingIds = new Set()) {
 
 export async function saveWater(waterId, waterInput, existingWater) {
   const image = await uploadImageIfNeeded(waterInput.image || existingWater?.image, {
-    folder: 'uploads/waters',
+    folder: 'images/uploads/waters',
     entityType: 'water',
     entityId: waterId,
     altText: waterInput.shortName || waterInput.name || existingWater?.shortName,
@@ -377,7 +377,7 @@ export async function removeWater(waterId) {
 export async function createCapture(captureInput) {
   const nextId = `capture-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const image = await uploadImageIfNeeded(captureInput.image, {
-    folder: 'uploads/catches',
+    folder: 'images/uploads/catches',
     entityType: 'capture',
     entityId: nextId,
     altText: 'Captura Team Bloster',
@@ -388,7 +388,7 @@ export async function createCapture(captureInput) {
 
 export async function saveCapture(captureId, captureInput, existingCapture) {
   const image = await uploadImageIfNeeded(captureInput.image || existingCapture?.image, {
-    folder: 'uploads/catches',
+    folder: 'images/uploads/catches',
     entityType: 'capture',
     entityId: captureId,
     altText: 'Captura Team Bloster',
