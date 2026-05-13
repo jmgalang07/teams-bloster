@@ -50,7 +50,7 @@ team-assets
 manteniendo exactamente las rutas internas, por ejemplo:
 
 ```bash
-images/logo.png
+images/logo.webp
 images/members/juanma.jpeg
 images/catches/c-juanma-proserpina-1.jpeg
 images/uploads/waters/horno-tejero.jpg

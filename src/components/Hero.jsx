@@ -8,7 +8,7 @@ export default function Hero({
   primaryAction,
   secondaryAction,
   stats = [],
-  backgroundImage = 'storage://team-assets/images/logo.png',
+  backgroundImage = 'storage://team-assets/images/logo.webp',
   compact = false
 }) {
   return (

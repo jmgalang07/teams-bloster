@@ -75,7 +75,7 @@ export default function WatersPage() {
         title="Charcas, pantanos y rios del equipo"
         description="Cada escenario tiene su tarjeta, su descripcion y una ficha detallada con capturas, cebos y pescadores relacionados."
         compact
-        backgroundImage="storage://team-assets/images/logo.png"
+        backgroundImage="storage://team-assets/images/logo.webp"
         stats={[
           {
             label: "Escenarios documentados",

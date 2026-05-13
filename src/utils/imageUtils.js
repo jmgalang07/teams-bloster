@@ -18,13 +18,15 @@ const loadImage = (src) =>
 
 export async function optimizeImageForStorage(
   file,
-  { maxDimension = 1800, quality = 0.84 } = {},
+  { maxDimension = 1800, quality = 0.82 } = {},
 ) {
   const sourceDataUrl = await readFileAsDataUrl(file);
   const image = await loadImage(sourceDataUrl);
+
   const ratio = Math.min(1, maxDimension / Math.max(image.width, image.height));
   const width = Math.max(1, Math.round(image.width * ratio));
   const height = Math.max(1, Math.round(image.height * ratio));
+
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
 
@@ -32,5 +34,12 @@ export async function optimizeImageForStorage(
   canvas.height = height;
   context?.drawImage(image, 0, 0, width, height);
 
-  return canvas.toDataURL('image/jpeg', quality);
+  const webpDataUrl = canvas.toDataURL('image/webp', quality);
+
+  // Por seguridad: si algún navegador no soporta webp, caerá a jpg.
+  if (!webpDataUrl.startsWith('data:image/webp')) {
+    return canvas.toDataURL('image/jpeg', quality);
+  }
+
+  return webpDataUrl;
 }

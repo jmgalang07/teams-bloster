@@ -281,7 +281,7 @@ const uploadImageIfNeeded = async (image, { folder, entityType, entityId, altTex
   const imageValue = String(image || '');
 
   if (!imageValue) {
-    return 'storage://team-assets/images/logo.png';
+    return 'storage://team-assets/images/logo.webp';
   }
 
   if (!imageValue.startsWith('data:')) {
@@ -324,7 +324,7 @@ export const createWaterPayload = (waterInput, source = 'custom') => ({
   known_for: String(waterInput.knownFor ?? 'Pendiente de completar').trim(),
   best_season: String(waterInput.bestSeason ?? 'Todo el ano').trim(),
   difficulty: String(waterInput.difficulty ?? 'Media').trim(),
-  image: waterInput.image || 'storage://team-assets/images/logo.png',
+  image: waterInput.image || 'storage://team-assets/images/logo.webp',
   tags: normalizeTags(waterInput.tags),
   notes: String(waterInput.notes ?? 'Sin notas adicionales.').trim(),
   website: String(waterInput.website ?? '').trim(),
@@ -340,7 +340,7 @@ export const createCapturePayload = (captureInput, source = 'custom') => ({
   weight_kg: Number(captureInput.weightKg) || 0,
   caught_on: captureInput.date || new Date().toISOString().slice(0, 10),
   rig: String(captureInput.rig ?? 'Hair rig clasico').trim(),
-  image: captureInput.image || 'storage://team-assets/images/logo.png',
+  image: captureInput.image || 'storage://team-assets/images/logo.webp',
   notes: String(captureInput.notes ?? '').trim(),
   source,
 });
@@ -356,7 +356,7 @@ export async function createWater(waterInput, existingIds = new Set()) {
   }
 
   const image = await uploadImageIfNeeded(waterInput.image, {
-    folder: 'images/uploads/waters',
+    folder: 'images/waters',
     entityType: 'water',
     entityId: nextId,
     altText: waterInput.shortName || waterInput.name,
@@ -368,7 +368,7 @@ export async function createWater(waterInput, existingIds = new Set()) {
 
 export async function saveWater(waterId, waterInput, existingWater) {
   const image = await uploadImageIfNeeded(waterInput.image || existingWater?.image, {
-    folder: 'images/uploads/waters',
+    folder: 'images/waters',
     entityType: 'water',
     entityId: waterId,
     altText: waterInput.shortName || waterInput.name || existingWater?.shortName,
@@ -385,7 +385,7 @@ export async function removeWater(waterId) {
 export async function createCapture(captureInput) {
   const nextId = `capture-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const image = await uploadImageIfNeeded(captureInput.image, {
-    folder: 'images/uploads/catches',
+    folder: 'images/catches',
     entityType: 'capture',
     entityId: nextId,
     altText: 'Captura Team Bloster',
@@ -396,7 +396,7 @@ export async function createCapture(captureInput) {
 
 export async function saveCapture(captureId, captureInput, existingCapture) {
   const image = await uploadImageIfNeeded(captureInput.image || existingCapture?.image, {
-    folder: 'images/uploads/catches',
+    folder: 'images/catches',
     entityType: 'capture',
     entityId: captureId,
     altText: 'Captura Team Bloster',

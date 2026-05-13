@@ -10,12 +10,12 @@ const SUPABASE_KEY =
 
 const BUCKET = 'team-assets';
 
-// Aquí está tu carpeta local.
-const ASSETS_DIR = path.resolve('supabase/assets/uploads');
+// Ahora la carpeta local raíz es directamente "supabase/assets".
+// Dentro van baits, brands, catches, waters, members, etc.
+const ASSETS_DIR = path.resolve('supabase/assets');
 
-// Aquí está el destino dentro del bucket.
-// Esto evita que se cree "/uploads" en la raíz.
-const STORAGE_PREFIX = 'images/uploads';
+// Destino dentro del bucket.
+const STORAGE_PREFIX = 'images';
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
   console.error(
@@ -58,6 +58,18 @@ const uploadFile = async (filePath) => {
     .relative(ASSETS_DIR, filePath)
     .split(path.sep)
     .join('/');
+
+  if (relativePath.startsWith('uploads/')) {
+    throw new Error(
+      `No se permite subir desde la carpeta uploads: ${relativePath}. Mueve ese archivo directamente a supabase/assets/catches, baits, waters, etc.`
+    );
+  }
+
+  if (relativePath.startsWith('images/')) {
+    throw new Error(
+      `No metas una carpeta images dentro de supabase/assets: ${relativePath}. El script ya añade "images/" automáticamente.`
+    );
+  }
 
   const storagePath = `${STORAGE_PREFIX}/${relativePath}`;
 

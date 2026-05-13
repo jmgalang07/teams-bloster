@@ -65,7 +65,7 @@ export default function CapturesPage() {
         title="Todas las capturas del equipo"
         description="Filtra por peso, tipo de pez, pescador, escenario y cebo. Aqui ya aparecen tambien las fotos que cargueis desde el panel."
         compact
-        backgroundImage="storage://team-assets/images/logo.png"
+        backgroundImage="storage://team-assets/images/logo.webp"
         stats={[
           { label: 'Resultados', value: filteredCatches.length, helper: 'Filtrado en tiempo real' },
           { label: 'Royales', value: filteredStats.royalCount, helper: 'En la seleccion actual' },

@@ -315,7 +315,7 @@ export default function UploadPanelPage() {
       const payload = {
         ...waterForm,
         shortName: waterForm.shortName.trim() || waterForm.name.trim(),
-        image: waterImage || (editingWaterId ? waters.find((item) => item.id === editingWaterId)?.image : 'storage://team-assets/storage://team-assets/images/logo.png'),
+        image: waterImage || (editingWaterId ? waters.find((item) => item.id === editingWaterId)?.image : 'storage://team-assets/storage://team-assets/images/logo.webp'),
       };
 
       const savedWater = editingWaterId ? await updateWater(editingWaterId, payload) : await addWater(payload);
@@ -566,7 +566,7 @@ export default function UploadPanelPage() {
         title="Sube, edita y borra capturas o escenarios"
         description="Ahora el panel deja crear contenido nuevo, modificar lo que ya existe y borrarlo con confirmacion antes de eliminarlo. Tambien he anadido Koi, Barbo, Pez gato y el escenario Portugal."
         compact
-        backgroundImage="storage://team-assets/images/logo.png"
+        backgroundImage="storage://team-assets/images/logo.webp"
       />
 
       {lastError ? (

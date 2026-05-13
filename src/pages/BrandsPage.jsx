@@ -13,7 +13,7 @@ export default function BrandsPage() {
         title="Marcas de carpfishing"
         description="Ahora las tarjetas enlazan a la pagina web de cada marca desde la imagen, el nombre y el boton final."
         compact
-        backgroundImage="storage://team-assets/images/logo.png"
+        backgroundImage="storage://team-assets/images/logo.webp"
         stats={[
   { label: 'Marcas en catálogo', value: brands.length, helper: 'Fabricantes y referencias destacadas' },
   { label: 'Consulta online', value: 'Disponible', helper: 'Enlace a web oficial o página de referencia' },

@@ -31,7 +31,7 @@ export default function Header() {
     <header className="site-header">
       <div className="site-container header-inner">
         <Link className="brand-mark" to="/">
-          <img src={assetPath('storage://team-assets/images/logo.png')} alt="Logo Team's Bloster" />
+          <img src={assetPath('storage://team-assets/images/logo.webp')} alt="Logo Team's Bloster" />
           <div>
             <strong>Team&apos;s Bloster</strong>
             <span>Carpfishing crew</span>

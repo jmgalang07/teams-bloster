@@ -13,7 +13,7 @@ export default function CebosPage() {
         title="Cebos de carpfishing"
         description="He dejado tambien los cebos con enlace directo para que al pulsar en la imagen o en el boton se abra su web."
         compact
-        backgroundImage="storage://team-assets/images/logo.png"
+        backgroundImage="storage://team-assets/images/logo.webp"
         stats={[
           {
             label: "Selección de cebos",
