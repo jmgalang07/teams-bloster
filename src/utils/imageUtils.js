@@ -1,3 +1,5 @@
+import { encode } from '@jsquash/webp';
+
 const readFileAsDataUrl = (file) =>
   new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -16,9 +18,18 @@ const loadImage = (src) =>
     image.src = src;
   });
 
+const blobToDataUrl = (blob) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = () => reject(new Error('No se ha podido convertir la imagen a WebP.'));
+    reader.readAsDataURL(blob);
+  });
+
 export async function optimizeImageForStorage(
   file,
-  { maxDimension = 1800, quality = 0.82 } = {},
+  { maxDimension = 1600, quality = 75 } = {},
 ) {
   const sourceDataUrl = await readFileAsDataUrl(file);
   const image = await loadImage(sourceDataUrl);
@@ -30,16 +41,23 @@ export async function optimizeImageForStorage(
   const canvas = document.createElement('canvas');
   const context = canvas.getContext('2d');
 
+  if (!context) {
+    throw new Error('No se ha podido preparar la imagen.');
+  }
+
   canvas.width = width;
   canvas.height = height;
 
-  context?.drawImage(image, 0, 0, width, height);
+  context.drawImage(image, 0, 0, width, height);
 
-  const webpDataUrl = canvas.toDataURL('image/webp', quality);
+  const imageData = context.getImageData(0, 0, width, height);
+  const webpBuffer = await encode(imageData, {
+    quality,
+  });
 
-  if (webpDataUrl.startsWith('data:image/webp')) {
-    return webpDataUrl;
-  }
+  const webpBlob = new Blob([webpBuffer], {
+    type: 'image/webp',
+  });
 
-  return canvas.toDataURL('image/jpeg', quality);
+  return blobToDataUrl(webpBlob);
 }
