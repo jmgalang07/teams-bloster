@@ -476,6 +476,7 @@
   align-items: end;
   justify-content: flex-start;
   gap: 0.8rem;
+  margin-top: 12px;
 }
 
 .empty-state {

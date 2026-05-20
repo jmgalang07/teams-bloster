@@ -63,18 +63,20 @@ export default function Header() {
             </NavLink>
           ))}
 
-          <button
-            className="nav-link theme-toggle"
-            type="button"
-            aria-label={isDarkTheme ? 'Activar modo claro' : 'Activar modo oscuro'}
-            title={isDarkTheme ? 'Activar modo claro' : 'Activar modo oscuro'}
-            onClick={toggleTheme}
-          >
-            <span className="theme-toggle-icon" aria-hidden="true">
-              {isDarkTheme ? '☀' : '☾'}
-            </span>
-            {isDarkTheme ? 'Modo claro' : 'Modo oscuro'}
-          </button>
+          {/*
+            <button
+              className="nav-link theme-toggle"
+              type="button"
+              aria-label={isDarkTheme ? 'Activar modo claro' : 'Activar modo oscuro'}
+              title={isDarkTheme ? 'Activar modo claro' : 'Activar modo oscuro'}
+              onClick={toggleTheme}
+            >
+              <span className="theme-toggle-icon" aria-hidden="true">
+                {isDarkTheme ? '☀' : '☾'}
+              </span>
+              {isDarkTheme ? 'Modo claro' : 'Modo oscuro'}
+            </button>
+            */}
 
           {ctaLink ? (
             <NavLink

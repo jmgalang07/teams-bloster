@@ -138,18 +138,6 @@ export default function WaterDetailPage() {
                 </span>
               ))}
             </div>
-            {water.website ? (
-              <div className="section-cta">
-                <a
-                  className="button button-secondary button-small"
-                  href={water.website}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Ver web o mapa
-                </a>
-              </div>
-            ) : null}
           </div>
 
           <div className="info-card scenic-card">

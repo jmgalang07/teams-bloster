@@ -662,6 +662,7 @@ export default function UploadPanelPage() {
                       type="number"
                       name="weightKg"
                       min="0"
+                      max="100"
                       step="0.1"
                       value={captureForm.weightKg}
                       onChange={handleCaptureFieldChange}
@@ -889,17 +890,6 @@ export default function UploadPanelPage() {
                         </option>
                       ))}
                     </select>
-                  </label>
-
-                  <label className="field">
-                    <span>Web o mapa</span>
-                    <input
-                      type="url"
-                      name="website"
-                      value={waterForm.website}
-                      onChange={handleWaterFieldChange}
-                      placeholder="https://..."
-                    />
                   </label>
                 </div>
 
