@@ -32,14 +32,14 @@ export async function optimizeImageForStorage(
 
   canvas.width = width;
   canvas.height = height;
+
   context?.drawImage(image, 0, 0, width, height);
 
   const webpDataUrl = canvas.toDataURL('image/webp', quality);
 
-  // Por seguridad: si algún navegador no soporta webp, caerá a jpg.
-  if (!webpDataUrl.startsWith('data:image/webp')) {
-    return canvas.toDataURL('image/jpeg', quality);
+  if (webpDataUrl.startsWith('data:image/webp')) {
+    return webpDataUrl;
   }
 
-  return webpDataUrl;
+  return canvas.toDataURL('image/jpeg', quality);
 }
