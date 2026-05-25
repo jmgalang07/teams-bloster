@@ -9,7 +9,7 @@ const navLinks = [
   { to: '/charcas', label: 'Escenarios' },
   { to: '/marcas', label: 'Marcas' },
   { to: '/cebos', label: 'Cebos' },
-  { to: '/panel', label: 'Subir captura', isCta: true },
+  { to: '/panel', label: 'Gestión contenido', isCta: true },
 ];
 
 export default function Header() {

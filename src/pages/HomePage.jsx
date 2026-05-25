@@ -55,7 +55,7 @@ export default function HomePage() {
         title={siteMeta.name}
         description="Web del equipo para guardar capturas, revisar escenarios y consultar cebos y marcas desde un mismo sitio. Tambien podeis subir fotos y mantener la informacion al dia desde el panel."
         primaryAction={{ to: '/capturas', label: siteMeta.ctaPrimary }}
-        secondaryAction={{ to: '/panel', label: 'Subir captura' }}
+        secondaryAction={{ to: '/panel', label: 'Gestión contenido' }}
         stats={[
           {
             label: 'Capturas registradas',
