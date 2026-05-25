@@ -38,28 +38,32 @@ const selectAll = (table, order = 'sort_order.asc') =>
 const selectById = (table, id) =>
   supabaseRest(`${table}?select=*&id=eq.${encodeURIComponent(id)}&limit=1`).then((rows) => rows?.[0] ?? null);
 
-const insertRow = (table, row) =>
+const insertRow = (table, row, { authToken = '' } = {}) =>
   supabaseRest(table, {
+    authToken,
     method: 'POST',
     headers: { Prefer: 'return=representation' },
     body: JSON.stringify(row),
   }).then((rows) => rows?.[0] ?? null);
 
-const updateRow = (table, id, row) =>
+const updateRow = (table, id, row, { authToken = '' } = {}) =>
   supabaseRest(`${table}?id=eq.${encodeURIComponent(id)}`, {
+    authToken,
     method: 'PATCH',
     headers: { Prefer: 'return=representation' },
     body: JSON.stringify(row),
   }).then((rows) => rows?.[0] ?? null);
 
-const deleteRow = (table, id) =>
+const deleteRow = (table, id, { authToken = '' } = {}) =>
   supabaseRest(`${table}?id=eq.${encodeURIComponent(id)}`, {
+    authToken,
     method: 'DELETE',
     headers: { Prefer: 'return=minimal' },
   });
 
-const deleteWhere = (table, query) =>
+const deleteWhere = (table, query, { authToken = '' } = {}) =>
   supabaseRest(`${table}?${query}`, {
+    authToken,
     method: 'DELETE',
     headers: { Prefer: 'return=minimal' },
   });
@@ -277,7 +281,7 @@ const getDataUrlMeta = (dataUrl) => {
   return { mimeType, extension };
 };
 
-const uploadImageIfNeeded = async (image, { folder, entityType, entityId, altText }) => {
+const uploadImageIfNeeded = async (image, { folder, entityType, entityId, altText, authToken }) => {
   const imageValue = String(image || '');
 
   if (!imageValue) {
@@ -297,19 +301,24 @@ const uploadImageIfNeeded = async (image, { folder, entityType, entityId, altTex
     path,
     body: blob,
     contentType: mimeType,
+    authToken,
   });
 
-  await insertRow(TABLES.assets, {
-    bucket: SUPABASE_ASSET_BUCKET,
-    path: uploaded.path,
-    public_url: getStoragePublicUrl(SUPABASE_ASSET_BUCKET, uploaded.path),
-    source_path: uploaded.storageUri,
-    entity_type: entityType,
-    entity_id: entityId,
-    kind: 'image',
-    mime_type: mimeType,
-    metadata: { alt: altText || '' },
-  });
+  await insertRow(
+    TABLES.assets,
+    {
+      bucket: SUPABASE_ASSET_BUCKET,
+      path: uploaded.path,
+      public_url: getStoragePublicUrl(SUPABASE_ASSET_BUCKET, uploaded.path),
+      source_path: uploaded.storageUri,
+      entity_type: entityType,
+      entity_id: entityId,
+      kind: 'image',
+      mime_type: mimeType,
+      metadata: { alt: altText || '' },
+    },
+    { authToken },
+  );
 
   return toStorageUri(SUPABASE_ASSET_BUCKET, uploaded.path);
 };
@@ -345,7 +354,7 @@ export const createCapturePayload = (captureInput, source = 'custom') => ({
   source,
 });
 
-export async function createWater(waterInput, existingIds = new Set()) {
+export async function createWater(waterInput, existingIds = new Set(), authToken = '') {
   const rawBaseId = slugify(waterInput.shortName || waterInput.name || '') || `water-${Date.now()}`;
   let nextId = rawBaseId;
   let collisionCount = 2;
@@ -360,61 +369,67 @@ export async function createWater(waterInput, existingIds = new Set()) {
     entityType: 'water',
     entityId: nextId,
     altText: waterInput.shortName || waterInput.name,
+    authToken,
   });
 
-  const row = await insertRow(TABLES.waters, createWaterPayload({ ...waterInput, id: nextId, image }, 'custom'));
+  const row = await insertRow(TABLES.waters, createWaterPayload({ ...waterInput, id: nextId, image }, 'custom'), { authToken });
   return mapWater(row);
 }
 
-export async function saveWater(waterId, waterInput, existingWater) {
+export async function saveWater(waterId, waterInput, existingWater, authToken = '') {
   const image = await uploadImageIfNeeded(waterInput.image || existingWater?.image, {
     folder: 'images/waters',
     entityType: 'water',
     entityId: waterId,
     altText: waterInput.shortName || waterInput.name || existingWater?.shortName,
+    authToken,
   });
-  const row = await updateRow(TABLES.waters, waterId, createWaterPayload({ ...existingWater, ...waterInput, id: waterId, image }, existingWater?.source || 'custom'));
+  const row = await updateRow(TABLES.waters, waterId, createWaterPayload({ ...existingWater, ...waterInput, id: waterId, image }, existingWater?.source || 'custom'), { authToken });
   return mapWater(row);
 }
 
-export async function removeWater(waterId) {
-  await deleteWhere(TABLES.catches, `water_id=eq.${encodeURIComponent(waterId)}`);
-  await deleteRow(TABLES.waters, waterId);
+export async function removeWater(waterId, authToken = '') {
+  await deleteWhere(TABLES.catches, `water_id=eq.${encodeURIComponent(waterId)}`, { authToken });
+  await deleteRow(TABLES.waters, waterId, { authToken });
 }
 
-export async function createCapture(captureInput) {
+export async function createCapture(captureInput, authToken = '') {
   const nextId = `capture-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   const image = await uploadImageIfNeeded(captureInput.image, {
     folder: 'images/catches',
     entityType: 'capture',
     entityId: nextId,
     altText: 'Captura Team Bloster',
+    authToken,
   });
-  const row = await insertRow(TABLES.catches, createCapturePayload({ ...captureInput, id: nextId, image }, 'custom'));
+  const row = await insertRow(TABLES.catches, createCapturePayload({ ...captureInput, id: nextId, image }, 'custom'), { authToken });
   return mapCapture(row);
 }
 
-export async function saveCapture(captureId, captureInput, existingCapture) {
+export async function saveCapture(captureId, captureInput, existingCapture, authToken = '') {
   const image = await uploadImageIfNeeded(captureInput.image || existingCapture?.image, {
     folder: 'images/catches',
     entityType: 'capture',
     entityId: captureId,
     altText: 'Captura Team Bloster',
+    authToken,
   });
-  const row = await updateRow(TABLES.catches, captureId, createCapturePayload({ ...existingCapture, ...captureInput, id: captureId, image }, existingCapture?.source || 'custom'));
+  const row = await updateRow(TABLES.catches, captureId, createCapturePayload({ ...existingCapture, ...captureInput, id: captureId, image }, existingCapture?.source || 'custom'), { authToken });
   return mapCapture(row);
 }
 
-export async function removeCapture(captureId) {
-  await deleteRow(TABLES.catches, captureId);
+export async function removeCapture(captureId, authToken = '') {
+  await deleteRow(TABLES.catches, captureId, { authToken });
 }
 
-export async function resetCustomRows() {
+export async function resetCustomRows(authToken = '') {
   await supabaseRest(`${TABLES.catches}?source=eq.custom`, {
+    authToken,
     method: 'DELETE',
     headers: { Prefer: 'return=minimal' },
   });
   await supabaseRest(`${TABLES.waters}?source=eq.custom`, {
+    authToken,
     method: 'DELETE',
     headers: { Prefer: 'return=minimal' },
   });

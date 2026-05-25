@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
+import { useAuth } from './AuthContext';
 import {
   buildEmptySiteData,
   createCapture,
@@ -24,6 +25,7 @@ const serializeForExport = ({ waters, catches }) => ({
 });
 
 export function SiteDataProvider({ children }) {
+  const { authToken, isAdmin } = useAuth();
   const [siteData, setSiteData] = useState(buildEmptySiteData);
   const [projectSyncStatus, setProjectSyncStatus] = useState('loading');
   const [lastError, setLastError] = useState(null);
@@ -47,6 +49,14 @@ export function SiteDataProvider({ children }) {
   useEffect(() => {
     refreshSiteData();
   }, [refreshSiteData]);
+
+  const requireAdminAccess = useCallback(() => {
+    if (!isAdmin || !authToken) {
+      throw new Error('Inicia sesion como administrador para modificar contenido.');
+    }
+
+    return authToken;
+  }, [authToken, isAdmin]);
 
   const rigOptions = useMemo(() => {
     const allRigs = siteData.catches
@@ -86,11 +96,11 @@ export function SiteDataProvider({ children }) {
   const addWater = useCallback(
     async (waterInput) => {
       const existingIds = new Set(siteData.waters.map((water) => water.id));
-      const savedWater = await createWater(waterInput, existingIds);
+      const savedWater = await createWater(waterInput, existingIds, requireAdminAccess());
       await refreshSiteData();
       return savedWater;
     },
-    [refreshSiteData, siteData.waters],
+    [refreshSiteData, requireAdminAccess, siteData.waters],
   );
 
   const updateWater = useCallback(
@@ -101,11 +111,11 @@ export function SiteDataProvider({ children }) {
         throw new Error('No hemos encontrado el escenario que quieres modificar.');
       }
 
-      const savedWater = await saveWater(waterId, waterInput, existingWater);
+      const savedWater = await saveWater(waterId, waterInput, existingWater, requireAdminAccess());
       await refreshSiteData();
       return savedWater;
     },
-    [refreshSiteData, siteData.waters],
+    [refreshSiteData, requireAdminAccess, siteData.waters],
   );
 
   const deleteWater = useCallback(
@@ -116,19 +126,19 @@ export function SiteDataProvider({ children }) {
         throw new Error('No hemos encontrado el escenario que quieres borrar.');
       }
 
-      await removeWater(waterId);
+      await removeWater(waterId, requireAdminAccess());
       await refreshSiteData();
     },
-    [refreshSiteData, siteData.waters],
+    [refreshSiteData, requireAdminAccess, siteData.waters],
   );
 
   const addCapture = useCallback(
     async (captureInput) => {
-      const savedCapture = await createCapture(captureInput);
+      const savedCapture = await createCapture(captureInput, requireAdminAccess());
       await refreshSiteData();
       return savedCapture;
     },
-    [refreshSiteData],
+    [refreshSiteData, requireAdminAccess],
   );
 
   const updateCapture = useCallback(
@@ -139,11 +149,11 @@ export function SiteDataProvider({ children }) {
         throw new Error('No hemos encontrado la captura que quieres modificar.');
       }
 
-      const savedCapture = await saveCapture(captureId, captureInput, existingCapture);
+      const savedCapture = await saveCapture(captureId, captureInput, existingCapture, requireAdminAccess());
       await refreshSiteData();
       return savedCapture;
     },
-    [refreshSiteData, siteData.catches],
+    [refreshSiteData, requireAdminAccess, siteData.catches],
   );
 
   const deleteCapture = useCallback(
@@ -154,10 +164,10 @@ export function SiteDataProvider({ children }) {
         throw new Error('No hemos encontrado la captura que quieres borrar.');
       }
 
-      await removeCapture(captureId);
+      await removeCapture(captureId, requireAdminAccess());
       await refreshSiteData();
     },
-    [refreshSiteData, siteData.catches],
+    [refreshSiteData, requireAdminAccess, siteData.catches],
   );
 
   const importCustomData = useCallback(
@@ -168,12 +178,12 @@ export function SiteDataProvider({ children }) {
       let importedCatches = 0;
 
       for (const water of watersToImport) {
-        await createWater(water, new Set(siteData.waters.map((item) => item.id)));
+        await createWater(water, new Set(siteData.waters.map((item) => item.id)), requireAdminAccess());
         importedWaters += 1;
       }
 
       for (const capture of catchesToImport) {
-        await createCapture(capture);
+        await createCapture(capture, requireAdminAccess());
         importedCatches += 1;
       }
 
@@ -189,13 +199,13 @@ export function SiteDataProvider({ children }) {
         deletedCatches: 0,
       };
     },
-    [refreshSiteData, siteData.waters],
+    [refreshSiteData, requireAdminAccess, siteData.waters],
   );
 
   const resetCustomData = useCallback(async () => {
-    await resetCustomRows();
+    await resetCustomRows(requireAdminAccess());
     await refreshSiteData();
-  }, [refreshSiteData]);
+  }, [refreshSiteData, requireAdminAccess]);
 
   const value = useMemo(
     () => ({

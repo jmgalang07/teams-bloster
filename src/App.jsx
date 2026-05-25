@@ -7,7 +7,9 @@ import WatersPage from './pages/WatersPage';
 import WaterDetailPage from './pages/WaterDetailPage';
 import BrandsPage from './pages/BrandsPage';
 import CebosPage from './pages/CebosPage';
+import AdminRoute from './components/AdminRoute';
 import UploadPanelPage from './pages/UploadPanelPage';
+import LoginPage from './pages/LoginPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 export default function App() {
@@ -21,7 +23,15 @@ export default function App() {
         <Route path="/charcas/:waterId" element={<WaterDetailPage />} />
         <Route path="/marcas" element={<BrandsPage />} />
         <Route path="/cebos" element={<CebosPage />} />
-        <Route path="/panel" element={<UploadPanelPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/panel"
+          element={
+            <AdminRoute>
+              <UploadPanelPage />
+            </AdminRoute>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>

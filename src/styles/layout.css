@@ -250,3 +250,10 @@
   );
   color: var(--text);
 }
+
+.nav-link-button {
+  border: 1px solid var(--line);
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}

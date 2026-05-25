@@ -249,3 +249,43 @@
 .card-actions-compact {
   margin-top: 0;
 }
+
+.auth-section {
+  padding-top: 3rem;
+}
+
+.auth-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.75fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.auth-card,
+.auth-help-card {
+  padding: 1.35rem;
+}
+
+.auth-card h1,
+.auth-card h2,
+.auth-help-card h3 {
+  margin: 0;
+}
+
+.auth-help-card code,
+.auth-card code {
+  color: var(--accent-2);
+}
+
+button:disabled,
+.button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.62;
+  transform: none;
+}
+
+@media (max-width: 880px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+}

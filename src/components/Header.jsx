@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import { assetPath } from '../utils/siteUtils';
 
@@ -15,7 +16,9 @@ const navLinks = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { isDarkTheme, toggleTheme } = useTheme();
+  const { isAdmin, signOut, user } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setMenuOpen(false);
@@ -26,6 +29,11 @@ export default function Header() {
     [],
   );
   const ctaLink = useMemo(() => navLinks.find((item) => item.isCta), []);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/login');
+  };
 
   return (
     <header className="site-header">
@@ -84,9 +92,16 @@ export default function Header() {
                 `nav-link nav-link-cta ${isActive ? 'is-active' : ''}`
               }
               to={ctaLink.to}
+              title={isAdmin && user?.email ? `Sesion admin: ${user.email}` : 'Acceso privado'}
             >
-              {ctaLink.label}
+              {isAdmin ? 'Panel admin' : ctaLink.label}
             </NavLink>
+          ) : null}
+
+          {isAdmin ? (
+            <button className="nav-link nav-link-button" type="button" onClick={handleSignOut}>
+              Salir
+            </button>
           ) : null}
         </nav>
       </div>
